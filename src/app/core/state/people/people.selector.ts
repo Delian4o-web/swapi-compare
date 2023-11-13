@@ -3,29 +3,25 @@ import { peopleFeatureKey } from "./people.reducer";
 
 const fetchPeopleState = createFeatureSelector<any>(peopleFeatureKey);
 
-export const getSearchPeopleResultFirst = createSelector(fetchPeopleState, (state) => {
-    return state.actorOneList;
-});
+export const selectFirstCharacterList = createSelector(
+    fetchPeopleState, (state) => state.actorOneList
+);
 
 export const selectIsLoading = createSelector(
     fetchPeopleState,
     (state) => state.isLoading
 );
 
-export const getSearchPeopleResultSecond = createSelector(fetchPeopleState, (state) => {
+export const selectSecondCharacterList = createSelector(fetchPeopleState, (state) => {
     return state.actorTwoList;
 });
 
-export const getSelectedPeopleA = createSelector(fetchPeopleState, (state) => {
+export const selectFirstCharacter = createSelector(fetchPeopleState, (state) => {
     return state.actorOneDetails;
 });
 
-export const getSelectedPeopleB = createSelector(fetchPeopleState, (state) => {
+export const selectSecondCharacter = createSelector(fetchPeopleState, (state) => {
     return state.actorTwoDetails;
-});
-
-export const getState = createSelector(fetchPeopleState, (state) => {
-    return state;
 });
 
 export const isWinner = (props: { name: string, type: string }) =>

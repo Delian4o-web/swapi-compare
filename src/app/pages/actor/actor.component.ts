@@ -5,8 +5,8 @@ import { IPeople } from '../../core/models/people.interface';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { Observable } from 'rxjs';
 import { AppState } from '../../core/reducers/reducer';
-import { Store, select } from '@ngrx/store';
-import { getState, isWinner } from '../../core/state/people/people.selector';
+import { Store } from '@ngrx/store';
+import { isWinner } from '../../core/state/people/people.selector';
 
 
 @Component({

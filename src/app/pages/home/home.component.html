@@ -3,13 +3,13 @@
      <div class="row justify-content-center">
     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-6">
         <div class="col-12">
-            <h1 style="color: white;"> People A</h1>
+            <h1 style="color: white;">{{actorOneName}}</h1>
         </div>
         <div class="col-12">
             <mat-form-field style="width: 60%;">
-                <mat-select [formControl]="actorA" placeholder="Enter Player" #singleSelect>
+                <mat-select [formControl]="actorA" placeholder="Enter Star Wars Characters" #singleSelect>
                   <mat-option>
-                    <ngx-mat-select-search  placeholderLabel="Search People..." [noEntriesFoundLabel]="'no matching found'" [formControl]="actorACtrl"></ngx-mat-select-search>
+                    <ngx-mat-select-search  placeholderLabel="Search Characters..." [noEntriesFoundLabel]="'No Results Found'" [formControl]="actorACtrl"></ngx-mat-select-search>
                   </mat-option>
                   <mat-option *ngFor="let actor of filteredAActors$ | async" [value]="actor.name" (click)="setPerson(actor,'actorOneDetails')">
                     {{actor.name}}
@@ -24,13 +24,13 @@
 
 
         <div class="col-12">
-            <h1 style="color: white;"> People B</h1>
+            <h1 style="color: white;">{{actorTwoName}}</h1>
         </div>
         <div class="col-12">
             <mat-form-field style="width: 60%;">
-                <mat-select [formControl]="actorB" placeholder="Enter Player" #singleSelect>
+                <mat-select [formControl]="actorB" placeholder="Enter Star Wars Characters" #singleSelect>
                   <mat-option>
-                    <ngx-mat-select-search  placeholderLabel="Search People..." [noEntriesFoundLabel]="'no matching found'" [formControl]="actorBCtrl"></ngx-mat-select-search>
+                    <ngx-mat-select-search  placeholderLabel="Search Characters..." [noEntriesFoundLabel]="'No Results Found'" [formControl]="actorBCtrl"></ngx-mat-select-search>
                   </mat-option>
                   <mat-option *ngFor="let actor of filteredBActors$ | async" [value]="actor.name" (click)="setPerson(actor,'actorTwoDetails')">
                     {{actor.name}}
@@ -39,9 +39,6 @@
               </mat-form-field>
         </div>
         <div class="col-12" *ngIf="(actorTwoDetail$|async)?.name">  <app-actor [actor]="actorTwoDetail$|async" actorType="Two"></app-actor></div>
-
-
     </div>
   </div>
 </div>
- 

@@ -1,3 +1,7 @@
+::-webkit-scrollbar {
+  display: none !important;
+}
+
 table, th, td {
     // border: 1px solid rgb(65, 63, 63);
     border-radius: 16px;
@@ -12,7 +16,7 @@ table, th, td {
 
   .wrap {
     display: flex;
-    background-color: #121212;
+    background-color: transparent;
     border-radius: 8px;
     padding: 5px;
     overflow-y: scroll;
@@ -20,8 +24,6 @@ table, th, td {
   }
 
   .title {
-    font-style: italic;
     text-decoration: underline;
   }
 
-  

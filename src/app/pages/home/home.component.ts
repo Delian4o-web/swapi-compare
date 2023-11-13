@@ -5,11 +5,16 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { Observable, debounceTime } from 'rxjs';
+import { Observable, debounceTime, take } from 'rxjs';
 import { AppState } from '../../core/reducers/reducer';
 import { Store } from '@ngrx/store';
 import { searchPeopleByNameAction, setPeopleData } from '../../core/state/people/actions/people.page.actions';
-import { getSearchPeopleResultFirst, getSearchPeopleResultSecond, getSelectedPeopleA, getSelectedPeopleB } from '../../core/state/people/people.selector';
+import {
+  selectFirstCharacterList,
+  selectFirstCharacter,
+  selectSecondCharacter,
+  selectSecondCharacterList
+} from '../../core/state/people/people.selector';
 import { IPeople } from '../../core/models/people.interface';
 import { ActorComponent } from '../actor/actor.component';
 
@@ -30,29 +35,31 @@ actorA= new FormControl();
 actorACtrl = new FormControl();
 filteredAActors$ !: Observable<IPeople[]>;
 actorOneDetail$ !: Observable<IPeople>;
+actorOneName = 'People A';
 
 actorB= new FormControl();
 actorBCtrl = new FormControl();
 filteredBActors$ !: Observable<IPeople[]>;
 actorTwoDetail$ !: Observable<IPeople>;
+actorTwoName = 'People B';
 
 constructor(private store: Store<AppState>){
-  
+
 }
 
 ngOnInit(): void {
   this.actorACtrl.valueChanges.pipe(debounceTime(500)).subscribe(data=>{
     if(!data) return;
     this.store.dispatch(searchPeopleByNameAction({name:data, listName:'actorOneList'}));
-    this.filteredAActors$= this.store.select(getSearchPeopleResultFirst);
-    this.actorOneDetail$ = this.store.select(getSelectedPeopleA);
+    this.filteredAActors$= this.store.select(selectFirstCharacterList);
+    this.actorOneDetail$ = this.store.select(selectFirstCharacter);
   })
 
   this.actorBCtrl.valueChanges.pipe(debounceTime(500)).subscribe(data=>{
     if(!data) return;
     this.store.dispatch(searchPeopleByNameAction({name:data, listName:'actorTwoList'}));
-    this.filteredBActors$= this.store.select(getSearchPeopleResultSecond);
-    this.actorTwoDetail$ = this.store.select(getSelectedPeopleB);
+    this.filteredBActors$= this.store.select(selectSecondCharacterList);
+    this.actorTwoDetail$ = this.store.select(selectSecondCharacter);
   })
 }
 
