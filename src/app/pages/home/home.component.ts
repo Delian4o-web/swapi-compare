@@ -5,14 +5,13 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { BehaviorSubject, Observable, debounce, debounceTime, tap } from 'rxjs';
+import { Observable, debounceTime } from 'rxjs';
 import { AppState } from '../../core/reducers/reducer';
 import { Store } from '@ngrx/store';
-import { searchPeopleByNameAction, setPeopleData } from '../../core/people/actions/people.actions';
-import { getSearchPeopleResultFirst, getSearchPeopleResultSecond, getSelectedPeopleA, getSelectedPeopleB } from '../../core/people/selector/people.selector';
-import { IPeople } from '../../core/people/interfaces/people.interface';
+import { searchPeopleByNameAction, setPeopleData } from '../../core/state/people/actions/people.page.actions';
+import { getSearchPeopleResultFirst, getSearchPeopleResultSecond, getSelectedPeopleA, getSelectedPeopleB } from '../../core/state/people/people.selector';
+import { IPeople } from '../../core/models/people.interface';
 import { ActorComponent } from '../actor/actor.component';
-import { show } from '../../core/spinner/actions/spinner.actions';
 
 @Component({
   selector: 'app-home',
@@ -44,7 +43,6 @@ constructor(private store: Store<AppState>){
 ngOnInit(): void {
   this.actorACtrl.valueChanges.pipe(debounceTime(500)).subscribe(data=>{
     if(!data) return;
-    this.store.dispatch(show());
     this.store.dispatch(searchPeopleByNameAction({name:data, listName:'actorOneList'}));
     this.filteredAActors$= this.store.select(getSearchPeopleResultFirst);
     this.actorOneDetail$ = this.store.select(getSelectedPeopleA);
@@ -52,7 +50,6 @@ ngOnInit(): void {
 
   this.actorBCtrl.valueChanges.pipe(debounceTime(500)).subscribe(data=>{
     if(!data) return;
-    this.store.dispatch(show())
     this.store.dispatch(searchPeopleByNameAction({name:data, listName:'actorTwoList'}));
     this.filteredBActors$= this.store.select(getSearchPeopleResultSecond);
     this.actorTwoDetail$ = this.store.select(getSelectedPeopleB);
@@ -60,7 +57,6 @@ ngOnInit(): void {
 }
 
 setPerson(actor:IPeople,listName:string){
-  this.store.dispatch(show());
   this.store.dispatch(setPeopleData({selectedPeople:actor, listName:listName}))
 }
 }

@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Component } from '@angular/core';
 import { AppComponent } from './app.component';
-import { PeopleService } from './core/people/service/people.service';
+import { PeopleService } from './core/services/people/people.service';
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } 
     from '@angular/common/http/testing';
@@ -14,8 +14,8 @@ import { provideStore } from '@ngrx/store';
 import { provideRouterStore } from '@ngrx/router-store';
 import {provideStoreDevtools} from "@ngrx/store-devtools";
 import { provideEffects } from '@ngrx/effects';
-import { PeopleEffects } from './core/people/effects/people.effects';
-import { PeopleService } from './core/people/service/people.service';
+import { PeopleEffects } from './core/state/people/people.effects';
+import { PeopleService } from './core/services/people/people.service';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';

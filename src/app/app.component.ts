@@ -3,15 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { HeaderComponent } from './layout/header/header.component';
-import { PeopleService } from './core/people/service/people.service';
+import { PeopleService } from './core/services/people/people.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { AppState } from './core/reducers/reducer';
 import { Observable } from 'rxjs';
-import { IPeople } from './core/people/interfaces/people.interface';
-import { isOpened } from './core/spinner/selector/spinner.selector';
-import { hide, show } from './core/spinner/actions/spinner.actions';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { selectIsLoading } from "./core/state/people/people.selector";
 
 @Component({
   selector: 'app-root',
@@ -24,15 +22,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 export class AppComponent implements OnInit {
   isLoading$!:Observable<boolean>;
 
-  title = 'starwars';
-  peoples$!:Observable<IPeople[]>;
   constructor(private people:PeopleService,private store:Store<AppState>){
 
   }
   ngOnInit(): void {
-    this.isLoading$ = this.store.select(isOpened);
-  
-
+    this.isLoading$ = this.store.select(selectIsLoading);
   }
 
 }

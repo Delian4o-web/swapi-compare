@@ -1,8 +1,7 @@
 import { routerReducer, RouterReducerState } from '@ngrx/router-store';
-import { peopleReducer} from "../people/reducers/people.reducer";
-import {peopleFeatureKey} from "../people/reducers/people.reducer";
-import { spinnerFeatureKey, spinnerReducer } from '../spinner/reducers/spinner.reducer';
-import { IPeople } from '../people/interfaces/people.interface';
+import { peopleReducer} from "../state/people/people.reducer";
+import {peopleFeatureKey} from "../state/people/people.reducer";
+import { IPeople } from '../models/people.interface';
 
 export interface AppState {
     [peopleFeatureKey]: {
@@ -11,12 +10,10 @@ export interface AppState {
         actorTwoList:IPeople[],
         actorTwoDetails:Partial<IPeople>,
       };
-      [spinnerFeatureKey]: boolean,
     router: RouterReducerState;
 }
 
 export const appReducer = {
     [peopleFeatureKey]: peopleReducer,
-    [spinnerFeatureKey]: spinnerReducer,
     router: routerReducer,
 };

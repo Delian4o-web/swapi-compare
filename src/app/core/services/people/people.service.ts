@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, first, of, map, tap } from 'rxjs';
-import { IPeople } from '../interfaces/people.interface';
+import { IPeople } from '../../models/people.interface';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({

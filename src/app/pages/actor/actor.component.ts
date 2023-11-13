@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
-import { IPeople } from '../../core/people/interfaces/people.interface';
+import { IPeople } from '../../core/models/people.interface';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { Observable } from 'rxjs';
 import { AppState } from '../../core/reducers/reducer';
 import { Store, select } from '@ngrx/store';
-import { getState, isWinner } from '../../core/people/selector/people.selector';
+import { getState, isWinner } from '../../core/state/people/people.selector';
 
 
 @Component({
