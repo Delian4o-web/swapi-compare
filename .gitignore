@@ -10,6 +10,7 @@
 pubspec.lock
 .c9
 .idea/
+.angular/
 .devcontainer/*
 !.devcontainer/README.md
 !.devcontainer/recommended-devcontainer.json
