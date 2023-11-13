@@ -9,7 +9,8 @@ export interface PeopleState {
     actorOneDetails: Partial<IPeople>,
     actorTwoList: IPeople[],
     actorTwoDetails: Partial<IPeople>,
-    isLoading: boolean
+    isLoading: boolean,
+    characterList: Partial<IPeople[]>
 }
 
 export const initialPeopleState: PeopleState = {
@@ -18,6 +19,7 @@ export const initialPeopleState: PeopleState = {
     actorTwoList: [],
     actorTwoDetails: {},
     isLoading: false,
+    characterList: []
 };
 
 export const peopleReducer = createReducer(
@@ -35,10 +37,11 @@ export const peopleReducer = createReducer(
             isLoading: false
         }
     }),
-    on(PeoplePageActions.setPeopleData, (state) => {
+    on(PeoplePageActions.setPeopleData, (state, action) => {
         return {
             ...state,
-            isLoading: true
+            isLoading: true,
+            characterList: [...state.characterList, action.selectedPeople]
         }
     }),
     on(PeopleAPIActions.individualLoadedSuccess, (state, {selectedPeople, listName}) => {

@@ -1,5 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { peopleFeatureKey } from "./people.reducer";
+import { IPeople } from "../../models/people.interface";
 
 const fetchPeopleState = createFeatureSelector<any>(peopleFeatureKey);
 
@@ -24,17 +25,21 @@ export const selectSecondCharacter = createSelector(fetchPeopleState, (state) =>
     return state.actorTwoDetails;
 });
 
-export const isWinner = (props: { name: string, type: string }) =>
+export const isWinner = (props: { name: string, characterName: string | undefined }) =>
     createSelector(
         fetchPeopleState,
         (state) => {
-            const opponentType = props.type === 'One' ? 'Two' : 'One';
-            const opponentOne = state[`actor${props.type}Details`][props.name];
-            const opponentTwo = state[`actor${opponentType}Details`][props.name];
+            const opponentOne = state.characterList.find((c: IPeople) => c.name === props.characterName) as IPeople | undefined;
+            const opponentTwo = state.characterList.find((c: IPeople) => c.name !== props.characterName) as IPeople | undefined;
 
-            return !!opponentOne && !!opponentTwo && opponentOne > opponentTwo;
+            if (opponentOne && opponentTwo && opponentOne[props.name as keyof IPeople] !== undefined && opponentTwo[props.name as keyof IPeople] !== undefined) {
+                return parseInt(opponentOne[props.name as keyof IPeople]) > parseInt(opponentTwo[props.name as keyof IPeople]);
+            }
+
+            return false;
         },
     );
+
 
 
 
