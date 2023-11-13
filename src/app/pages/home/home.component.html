@@ -11,13 +11,13 @@
                   <mat-option>
                     <ngx-mat-select-search  placeholderLabel="Search Characters..." [noEntriesFoundLabel]="'No Results Found'" [formControl]="actorACtrl"></ngx-mat-select-search>
                   </mat-option>
-                  <mat-option *ngFor="let actor of filteredAActors$ | async" [value]="actor.name" (click)="setPerson(actor,'actorOneDetails')">
+                  <mat-option *ngFor="let actor of firstCharacterList$ | async" [value]="actor.name" (click)="setPerson(actor,'actorOneDetails')">
                     {{actor.name}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
         </div>
-        <div class="col-12" *ngIf="(actorOneDetail$|async)?.name">  <app-actor [actor]="actorOneDetail$|async" actorType="One"></app-actor></div>
+        <div class="col-12" *ngIf="(firstCharacterDetails$|async)?.name">  <app-actor [actor]="firstCharacterDetails$|async" actorType="One"></app-actor></div>
 
     </div>
     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-6">
@@ -32,13 +32,13 @@
                   <mat-option>
                     <ngx-mat-select-search  placeholderLabel="Search Characters..." [noEntriesFoundLabel]="'No Results Found'" [formControl]="actorBCtrl"></ngx-mat-select-search>
                   </mat-option>
-                  <mat-option *ngFor="let actor of filteredBActors$ | async" [value]="actor.name" (click)="setPerson(actor,'actorTwoDetails')">
+                  <mat-option *ngFor="let actor of secondCharacterList$ | async" [value]="actor.name" (click)="setPerson(actor,'actorTwoDetails')">
                     {{actor.name}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
         </div>
-        <div class="col-12" *ngIf="(actorTwoDetail$|async)?.name">  <app-actor [actor]="actorTwoDetail$|async" actorType="Two"></app-actor></div>
+        <div class="col-12" *ngIf="(secondCharacterDetails$|async)?.name">  <app-actor [actor]="secondCharacterDetails$|async" actorType="Two"></app-actor></div>
     </div>
   </div>
 </div>

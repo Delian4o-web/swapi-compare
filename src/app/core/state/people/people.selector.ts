@@ -29,11 +29,12 @@ export const isWinner = (props: { name: string, type: string }) =>
         fetchPeopleState,
         (state) => {
             const opponentType = props.type === 'One' ? 'Two' : 'One';
-            if (!state[`actor${props.type}Details`][props.name] || !state[`actor${opponentType}Details`][props.name]) {
-                return false;
-            } else if (state[`actor${props.type}Details`][props.name] as unknown as number > state[`actor${opponentType}Details`][props.name] as unknown as number) {
-                return true;
-            }
-            return false;
+            const opponentOne = state[`actor${props.type}Details`][props.name];
+            const opponentTwo = state[`actor${opponentType}Details`][props.name];
+
+            return !!opponentOne && !!opponentTwo && opponentOne > opponentTwo;
         },
     );
+
+
+

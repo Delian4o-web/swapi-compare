@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../layout/header/header.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { Observable, debounceTime, take } from 'rxjs';
+import { Observable, debounceTime, take, Subject, takeUntil, filter } from 'rxjs';
 import { AppState } from '../../core/reducers/reducer';
 import { Store } from '@ngrx/store';
 import { searchPeopleByNameAction, setPeopleData } from '../../core/state/people/actions/people.page.actions';
@@ -30,37 +30,46 @@ import { ActorComponent } from '../actor/actor.component';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+private _destroy = new Subject();
+
 actorA= new FormControl();
 actorACtrl = new FormControl();
-filteredAActors$ !: Observable<IPeople[]>;
-actorOneDetail$ !: Observable<IPeople>;
-actorOneName = 'People A';
+firstCharacterList$ !: Observable<IPeople[]>;
+firstCharacterDetails$ !: Observable<IPeople>;
+actorOneName = 'Person A';
 
 actorB= new FormControl();
 actorBCtrl = new FormControl();
-filteredBActors$ !: Observable<IPeople[]>;
-actorTwoDetail$ !: Observable<IPeople>;
-actorTwoName = 'People B';
+secondCharacterList$ !: Observable<IPeople[]>;
+secondCharacterDetails$ !: Observable<IPeople>;
+actorTwoName = 'Person B';
 
 constructor(private store: Store<AppState>){
 
 }
 
 ngOnInit(): void {
-  this.actorACtrl.valueChanges.pipe(debounceTime(500)).subscribe(data=>{
+  this.actorACtrl.valueChanges.pipe(debounceTime(500), takeUntil(this._destroy)).subscribe(data=>{
     if(!data) return;
     this.store.dispatch(searchPeopleByNameAction({name:data, listName:'actorOneList'}));
-    this.filteredAActors$= this.store.select(selectFirstCharacterList);
-    this.actorOneDetail$ = this.store.select(selectFirstCharacter);
+    this.firstCharacterList$= this.store.select(selectFirstCharacterList);
+    this.firstCharacterDetails$ = this.store.select(selectFirstCharacter);
+    this.store.select(selectFirstCharacter).pipe(takeUntil(this._destroy), filter(x => !!x)).subscribe((personObj: IPeople) => this.actorOneName = personObj.name);
   })
 
-  this.actorBCtrl.valueChanges.pipe(debounceTime(500)).subscribe(data=>{
+  this.actorBCtrl.valueChanges.pipe(debounceTime(500), takeUntil(this._destroy)).subscribe(data=>{
     if(!data) return;
     this.store.dispatch(searchPeopleByNameAction({name:data, listName:'actorTwoList'}));
-    this.filteredBActors$= this.store.select(selectSecondCharacterList);
-    this.actorTwoDetail$ = this.store.select(selectSecondCharacter);
+    this.secondCharacterList$= this.store.select(selectSecondCharacterList);
+    this.secondCharacterDetails$ = this.store.select(selectSecondCharacter);
+    this.store.select(selectSecondCharacter).pipe(takeUntil(this._destroy), filter(x => !!x)).subscribe((personObj: IPeople) => this.actorOneName = personObj.name);
   })
+}
+
+ngOnDestroy(): void {
+    this._destroy.next('');
+    this._destroy.complete();
 }
 
 setPerson(actor:IPeople,listName:string){
