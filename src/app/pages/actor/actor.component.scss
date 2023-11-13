@@ -1,0 +1,27 @@
+table, th, td {
+    // border: 1px solid rgb(65, 63, 63);
+    border-radius: 16px;
+    border-collapse: collapse;
+    color: white;
+  }
+  th, td {
+    padding: 5px;
+    margin-left: 15px;
+    text-align: left;
+  }
+
+  .wrap {
+    display: flex;
+    background-color: #121212;
+    border-radius: 8px;
+    padding: 5px;
+    overflow-y: scroll;
+    height: 70vh;
+  }
+
+  .title {
+    font-style: italic;
+    text-decoration: underline;
+  }
+
+  

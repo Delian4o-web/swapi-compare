@@ -1,28 +1,27 @@
 // @ts-nocheck
-import { TestBed } from '@angular/core/testing';
-import { Pipe, PipeTransform, Injectable, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, Directive, Input } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Pipe, PipeTransform, Injectable, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, Directive, Input, Output } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { Observable, of as observableOf, throwError } from 'rxjs';
 
 import { Component } from '@angular/core';
-import { AppComponent } from './app.component';
-import { PeopleService } from './core/people/service/people.service';
+import { ActorComponent } from './actor.component';
+import { Store } from '@ngrx/store';
 import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } 
+import { HttpTestingController, provideHttpClientTesting } 
     from '@angular/common/http/testing';
-import { appReducer } from './core/reducers/reducer';
+import { appReducer } from '../../core/reducers/reducer';
 import { provideStore } from '@ngrx/store';
 import { provideRouterStore } from '@ngrx/router-store';
 import {provideStoreDevtools} from "@ngrx/store-devtools";
 import { provideEffects } from '@ngrx/effects';
-import { PeopleEffects } from './core/people/effects/people.effects';
-import { PeopleService } from './core/people/service/people.service';
+import { PeopleEffects } from '../../core/people/effects/people.effects';
+import { PeopleService } from '../../core/people/service/people.service';
 import { provideRouter } from '@angular/router';
-import { routes } from './app.routes';
+import { routes } from '../../app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
-
-
-@Injectable()
-class MockPeopleService {}
 
 @Directive({ selector: '[myCustom]' })
 class MyCustomDirective {
@@ -44,15 +43,14 @@ class SafeHtmlPipe implements PipeTransform {
   transform(value) { return value; }
 }
 
-describe('AppComponent', () => {
+describe('ActorComponent', () => {
   let fixture;
   let component;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ FormsModule, ReactiveFormsModule,AppComponent ],
+      imports: [ FormsModule, ReactiveFormsModule ,ActorComponent],
       declarations: [
-    
         TranslatePipe, PhoneNumberPipe, SafeHtmlPipe,
         MyCustomDirective
       ],
@@ -67,11 +65,10 @@ describe('AppComponent', () => {
         provideEffects([PeopleEffects]),
         provideRouter(routes), provideAnimations()
       ]
-    }).overrideComponent(AppComponent, {
+    }).overrideComponent(ActorComponent, {
 
-      set: { providers: [{ provide: PeopleService, useClass: MockPeopleService }] }    
     }).compileComponents();
-    fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(ActorComponent);
     component = fixture.debugElement.componentInstance;
   });
 
@@ -84,11 +81,11 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should run #ngOnInit()', async () => {
+  it('should run #checkWinner()', async () => {
     component.store = component.store || {};
     spyOn(component.store, 'select');
-    component.ngOnInit();
-    // expect(component.store.select).toHaveBeenCalled();
+    component.checkWinner({});
+    expect(component.store.select).toHaveBeenCalled();
   });
 
 });
