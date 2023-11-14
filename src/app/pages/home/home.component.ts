@@ -63,7 +63,7 @@ ngOnInit(): void {
     this.store.dispatch(searchPeopleByNameAction({name:data, listName:'actorTwoList'}));
     this.secondCharacterList$= this.store.select(selectSecondCharacterList);
     this.secondCharacterDetails$ = this.store.select(selectSecondCharacter);
-    this.store.select(selectSecondCharacter).pipe(takeUntil(this._destroy), filter(x => !!x)).subscribe((personObj: IPeople) => this.actorOneName = personObj.name);
+    this.store.select(selectSecondCharacter).pipe(takeUntil(this._destroy), filter(x => !!x)).subscribe((personObj: IPeople) => this.actorTwoName = personObj.name);
   })
 }
 
