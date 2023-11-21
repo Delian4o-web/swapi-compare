@@ -1,6 +1,11 @@
 import { createAction, props } from '@ngrx/store';
 import { IPeople } from '../../../models/people.interface';
 
-export const searchPeopleByNameAction = createAction('[People API] SEARCH_NAME',props<{ name: string,listName:string }>());
-export const setPeopleData = createAction('[People API] SET_PEOPLE_DATA',props<{ selectedPeople: IPeople,listName:string }>());
+export const searchCharacterByName = createAction(
+    '[People Page] Search Character By Name'
+    , props<{ characterName: string, listName: string }>());
+
+export const loadCharacterDetails = createAction(
+    '[People Page] Load Character Details'
+    , props<{ character: IPeople, listName: string }>());
 

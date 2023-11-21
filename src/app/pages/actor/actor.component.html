@@ -4,39 +4,39 @@
         <tr >
             <th colspan="1"><h2 class="title">Basic Details</h2></th>
             <td colspan="1">
-                <img *ngIf="actor?.gender" src="assets/images/{{actor?.gender}}.png" width="80px"/>
+                <img *ngIf="character?.gender" src="assets/images/{{character?.gender}}.png" width="80px"/>
             </td>
         </tr>
     <tr>
       <th>Name:</th>
-      <td>{{actor?.name?? 'N/A'}} </td>
+      <td>{{character?.name?? 'N/A'}} </td>
     </tr>
     <tr>
         <th>Height:</th>
-        <td>{{actor?.height?? 'N/A'}} <span *ngIf="checkWinner('height') | async" class="inline-flex items-center ml-2 rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Winner</span>
+        <td>{{character?.height?? 'N/A'}} <span *ngIf="checkWinner('height') | async" class="inline-flex items-center ml-2 rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Winner</span>
         </td>
       </tr>
       <tr>
         <th>Mass:</th>
-        <td>{{actor?.mass?? 'N/A'}}
+        <td>{{character?.mass?? 'N/A'}}
             <span *ngIf="checkWinner('mass') | async" class="inline-flex items-center ml-2 rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Winner</span>
         </td>
       </tr>
       <tr>
         <th>Hair Color:</th>
-        <td>{{actor?.hair_color?? 'N/A'}}</td>
+        <td>{{character?.hair_color?? 'N/A'}}</td>
       </tr>
       <tr>
         <th>Eye Color:</th>
-        <td>{{actor?.eye_color?? 'N/A'}}</td>
+        <td>{{character?.eye_color?? 'N/A'}}</td>
       </tr>
       <tr>
         <th>Birth Year:</th>
-        <td>{{actor?.birth_year?? 'N/A'}}</td>
+        <td>{{character?.birth_year?? 'N/A'}}</td>
       </tr>
       <tr>
         <th>Gender:</th>
-        <td>{{actor?.gender?? 'N/A'}}</td>
+        <td>{{character?.gender?? 'N/A'}}</td>
       </tr>
 
       <tr>
@@ -44,34 +44,34 @@
     </tr>
     <tr>
         <th>Starship Name:</th>
-        <td>{{actor?.starship?.name ?? 'N/A'?? 'N/A'}}</td>
+        <td>{{character?.starship?.name ?? 'N/A'?? 'N/A'}}</td>
       </tr>
       <tr>
         <th>Starship Model:</th>
-        <td>{{actor?.starship?.model?? 'N/A'}}</td>
+        <td>{{character?.starship?.model?? 'N/A'}}</td>
       </tr>
 
       <tr>
         <th>Starship Manufacturer:</th>
-        <td>{{actor?.starship?.manufacturer?? 'N/A'}}</td>
+        <td>{{character?.starship?.manufacturer?? 'N/A'}}</td>
       </tr>
 
       <tr>
         <th>Starship Cost In Credits:</th>
-        <td>{{actor?.starship?.cost_in_credits?? 'N/A'}}</td>
+        <td>{{character?.starship?.cost_in_credits?? 'N/A'}}</td>
       </tr>
 
 
       <tr>
         <th>Starship Length:</th>
-        <td>{{actor?.starship?.length?? 'N/A'}}</td>
+        <td>{{character?.starship?.length?? 'N/A'}}</td>
       </tr>
 
 
 
       <tr>
         <th>Starship Crew:</th>
-        <td>{{actor?.starship?.crew?? 'N/A'}}</td>
+        <td>{{character?.starship?.crew?? 'N/A'}}</td>
       </tr>
 
 
@@ -80,7 +80,7 @@
 
       <tr>
         <th>Starship Passengers:</th>
-        <td>{{actor?.starship?.passengers?? 'N/A'}}</td>
+        <td>{{character?.starship?.passengers?? 'N/A'}}</td>
       </tr>
 
 
@@ -89,7 +89,7 @@
 
       <tr>
         <th>Starship Cargo Capacity:</th>
-        <td>{{actor?.starship?.cargo_capacity?? 'N/A'}}</td>
+        <td>{{character?.starship?.cargo_capacity?? 'N/A'}}</td>
       </tr>
 
 
@@ -98,19 +98,19 @@
 
       <tr>
         <th>Starship Consumables:</th>
-        <td>{{actor?.starship?.consumables?? 'N/A'}}</td>
+        <td>{{character?.starship?.consumables?? 'N/A'}}</td>
       </tr>
 
 
       <tr>
         <th>Starship Hyperdrive Rating:</th>
-        <td>{{actor?.starship?.hyperdrive_rating?? 'N/A'}}</td>
+        <td>{{character?.starship?.hyperdrive_rating?? 'N/A'}}</td>
       </tr>
 
 
       <tr>
         <th>Starship MGLT:</th>
-        <td>{{actor?.starship?.MGLT?? 'N/A'}}</td>
+        <td>{{character?.starship?.MGLT?? 'N/A'}}</td>
       </tr>
 
       <tr>
@@ -118,46 +118,46 @@
     </tr>
     <tr>
         <th>Species Name:</th>
-        <td>{{actor?.specie?.name ?? 'N/A'?? 'N/A'}}</td>
+        <td>{{character?.specie?.name ?? 'N/A'?? 'N/A'}}</td>
       </tr>
       <tr>
         <th>Species Classification:</th>
-        <td>{{actor?.specie?.classification?? 'N/A'}}</td>
+        <td>{{character?.specie?.classification?? 'N/A'}}</td>
       </tr>
 
       <tr>
         <th>Species Designation:</th>
-        <td>{{actor?.specie?.designation?? 'N/A'}}</td>
+        <td>{{character?.specie?.designation?? 'N/A'}}</td>
       </tr>
 
       <tr>
         <th>Species Average Height:</th>
-        <td>{{actor?.specie?.average_height?? 'N/A'}}</td>
+        <td>{{character?.specie?.average_height?? 'N/A'}}</td>
       </tr>
 
 
       <tr>
         <th>Species Skin Colors:</th>
-        <td>{{actor?.specie?.skin_colors?? 'N/A'}}</td>
+        <td>{{character?.specie?.skin_colors?? 'N/A'}}</td>
       </tr>
 
 
 
       <tr>
         <th>Species Hair Colors:</th>
-        <td>{{actor?.specie?.hair_colors?? 'N/A'}}</td>
+        <td>{{character?.specie?.hair_colors?? 'N/A'}}</td>
       </tr>
 
 
 
       <tr>
         <th>Species Eye Colors:</th>
-        <td>{{actor?.specie?.eye_colors?? 'N/A'}}</td>
+        <td>{{character?.specie?.eye_colors?? 'N/A'}}</td>
       </tr>
 
       <tr>
         <th>Species Lifespan:</th>
-        <td>{{actor?.specie?.average_lifespan?? 'N/A'}}</td>
+        <td>{{character?.specie?.average_lifespan?? 'N/A'}}</td>
       </tr>
 
 
@@ -169,41 +169,41 @@
     </tr>
     <tr>
         <th>Planet Name:</th>
-        <td>{{actor?.home?.name?? 'N/A'}}</td>
+        <td>{{character?.home?.name?? 'N/A'}}</td>
       </tr>
       <tr>
         <th>Planet Rotation Period:</th>
-        <td>{{actor?.home?.rotation_period?? 'N/A'}}</td>
+        <td>{{character?.home?.rotation_period?? 'N/A'}}</td>
       </tr>
 
       <tr>
         <th>Planet Orbital Period:</th>
-        <td>{{actor?.home?.orbital_period?? 'N/A'}}</td>
+        <td>{{character?.home?.orbital_period?? 'N/A'}}</td>
       </tr>
 
       <tr>
         <th>Planet Diameter:</th>
-        <td>{{actor?.home?.diameter?? 'N/A'}}</td>
+        <td>{{character?.home?.diameter?? 'N/A'}}</td>
       </tr>
 
 
       <tr>
         <th>Planet Climate:</th>
-        <td>{{actor?.home?.climate?? 'N/A'}}</td>
+        <td>{{character?.home?.climate?? 'N/A'}}</td>
       </tr>
 
 
 
       <tr>
         <th>Planet Gravity:</th>
-        <td>{{actor?.home?.gravity?? 'N/A'}}</td>
+        <td>{{character?.home?.gravity?? 'N/A'}}</td>
       </tr>
 
 
 
       <tr>
         <th>Planet Terrain:</th>
-        <td>{{actor?.home?.terrain?? 'N/A'}}</td>
+        <td>{{character?.home?.terrain?? 'N/A'}}</td>
       </tr>
 
 
@@ -215,36 +215,36 @@
     </tr>
     <tr>
         <th>Vehicle Name:</th>
-        <td>{{actor?.vehicle?.name?? 'N/A'}}</td>
+        <td>{{character?.vehicle?.name?? 'N/A'}}</td>
       </tr>
       <tr>
         <th>Vehicle Model:</th>
-        <td>{{actor?.vehicle?.model?? 'N/A'}}</td>
+        <td>{{character?.vehicle?.model?? 'N/A'}}</td>
       </tr>
 
       <tr>
         <th>Vehicle Manufacturer:</th>
-        <td>{{actor?.vehicle?.manufacturer?? 'N/A'}}</td>
+        <td>{{character?.vehicle?.manufacturer?? 'N/A'}}</td>
       </tr>
 
       <tr>
         <th>Vehicle Length:</th>
-        <td>{{actor?.vehicle?.length?? 'N/A'}}</td>
+        <td>{{character?.vehicle?.length?? 'N/A'}}</td>
       </tr>
 
       <tr>
         <th>Vehicle Max Atmosphering Speed:</th>
-        <td>{{actor?.vehicle?.max_atmosphering_speed?? 'N/A'}}</td>
+        <td>{{character?.vehicle?.max_atmosphering_speed?? 'N/A'}}</td>
       </tr>
 
       <tr>
         <th>Vehicle Crew:</th>
-        <td>{{actor?.vehicle?.crew?? 'N/A'}}</td>
+        <td>{{character?.vehicle?.crew?? 'N/A'}}</td>
       </tr>
 
       <tr>
         <th>Vehicle Cargo Capacity:</th>
-        <td>{{actor?.vehicle?.cargo_capacity?? 'N/A'}}</td>
+        <td>{{character?.vehicle?.cargo_capacity?? 'N/A'}}</td>
       </tr>
   </table>
 </div>

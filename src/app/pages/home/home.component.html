@@ -17,7 +17,7 @@
                 </mat-select>
               </mat-form-field>
         </div>
-        <div class="col-12" *ngIf="(firstCharacterDetails$|async)?.name">  <app-actor [actor]="firstCharacterDetails$|async" actorType="One"></app-actor></div>
+        <div class="col-12" *ngIf="(firstCharacterDetails$|async)?.name">  <app-actor [character]="firstCharacterDetails$|async"></app-actor></div>
 
     </div>
     <div class="col-xl-6 col-md-6 col-sm-12 col-xs-6">
@@ -38,7 +38,7 @@
                 </mat-select>
               </mat-form-field>
         </div>
-        <div class="col-12" *ngIf="(secondCharacterDetails$|async)?.name">  <app-actor [actor]="secondCharacterDetails$|async" actorType="Two"></app-actor></div>
+        <div class="col-12" *ngIf="(secondCharacterDetails$|async)?.name">  <app-actor [character]="secondCharacterDetails$|async"></app-actor></div>
     </div>
   </div>
 </div>

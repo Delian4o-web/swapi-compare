@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { IPeople } from '../../core/models/people.interface';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { Observable, take } from 'rxjs';
@@ -14,17 +14,17 @@ import { isWinner } from '../../core/state/people/people.selector';
   standalone: true,
   imports: [CommonModule,MatCardModule, MatGridListModule],
   templateUrl: './actor.component.html',
-  styleUrl: './actor.component.scss'
+  styleUrl: './actor.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ActorComponent {
-  @Input({required:true}) actor!:IPeople | null;
+  @Input({required:true}) character!:IPeople | null;
 
   constructor(private store:Store<AppState>){
-
   }
 
-  checkWinner(name:string):Observable<boolean>{
-    return this.store.select(isWinner({name:name, characterName:this.actor?.name})).pipe(take(1))
+  checkWinner(propertyName:string): Observable<boolean>{
+    return this.store.select(isWinner({propertyName, characterName:this.character?.name}));
   }
 
 }
